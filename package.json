@@ -1,0 +1,25 @@
+{
+  "name": "@tokenring-ai/secrets",
+  "version": "0.2.0",
+  "description": "Configuration secrets: declare API keys and tokens in plugin config schemas and resolve them from a literal value, an environment variable, or the credential vault.",
+  "dependencies": {
+    "@tokenring-ai/app": "workspace:*",
+    "zod": "^4.4.3"
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./*": "./*.ts"
+  },
+  "types": "./index.ts",
+  "license": "MIT",
+  "scripts": {
+    "test": "bun test",
+    "test:watch": "bun test --watch",
+    "test:coverage": "bun test --coverage",
+    "build": "tsc --noEmit"
+  },
+  "type": "module",
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}
