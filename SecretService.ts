@@ -64,15 +64,6 @@ export default class SecretService implements TokenRingService {
     return process.env[name] || this.store?.getSecret(VAULT_ENV_CATEGORY, name) || undefined;
   }
 
-  /** Every environment name readable through {@link getEnv}, for env-driven discovery. */
-  listEnvNames(): string[] {
-    const names = new Set(Object.keys(process.env));
-    for (const key of Object.keys(this.store?.listSecrets(VAULT_ENV_CATEGORY) ?? {})) {
-      names.add(key);
-    }
-    return [...names];
-  }
-
   /** Resolves a reference, throwing a message naming the source when it has no value. */
   require(ref: SecretRef | undefined, what: string): string {
     const value = this.resolve(ref);
