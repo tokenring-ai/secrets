@@ -17,6 +17,6 @@ export default {
   version: packageJSON.version,
   description: packageJSON.description,
   earlyInstall(app) {
-    app.addServices(new SecretService());
+    app.addService(new SecretService());
   },
 } satisfies TokenRingPlugin;
