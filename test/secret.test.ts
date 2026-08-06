@@ -124,11 +124,18 @@ describe("secret references", () => {
 
     it("is registered by the plugin's early install", async () => {
       const app = new TokenRingApp({
-        app: { dataDirectory: "/tmp", configDirectories: [], shutdownMonitorIntervalMs: 2000, serviceRestartDelayMs: 5000, printLogs: false },
+        app: {
+          workingDirectory: "/tmp",
+          workspaceDirectory: "/tmp",
+          configDirectories: [],
+          shutdownMonitorIntervalMs: 2000,
+          serviceRestartDelayMs: 5000,
+          printLogs: false,
+        },
       });
       expect(app.getService(SecretService)).toBeUndefined();
 
-      await new PluginManager(app).installPlugins([secretsPlugin]);
+      await app.addService(new PluginManager(app)).installPlugins([secretsPlugin]);
 
       expect(app.requireService(SecretService)).toBeInstanceOf(SecretService);
     });
